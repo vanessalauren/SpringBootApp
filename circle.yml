@@ -6,6 +6,7 @@ machine:
 dependencies:
   override:
       - mvn dependency:resolve
+      - docker build -t vlanderson/sloos-test .
 test:
     override:
       - mvn verify
