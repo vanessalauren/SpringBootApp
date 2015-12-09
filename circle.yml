@@ -9,6 +9,7 @@ machine:
 dependencies:
   override:
       - mvn dependency:resolve
+      - mv build/libs/* $CIRCLE_ARTIFACTS
       - docker build -t vlanderson/sloos-test .
 test:
     override:
