@@ -1,6 +1,6 @@
 general:
   artifacts:
-    - *.jar
+    - "build/libs/*.jar"
 machine:
   java:
     version: oraclejdk8
