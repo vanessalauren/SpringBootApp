@@ -7,6 +7,9 @@ machine:
 dependencies:
   override:
       - mvn dependency:resolve
+      - pwd
+      - cd ..
+      - pwd
       - mv ../target/* $CIRCLE_ARTIFACTS
       - docker build -t vlanderson/sloos-test .
 test:
