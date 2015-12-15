@@ -1,6 +1,6 @@
 general:
-artifacts:
-    - "~/target/*" # anything in target directory
+    artifacts:
+        - "~/target/*" # anything in target directory
 machine:
   java:
     version: oraclejdk8
