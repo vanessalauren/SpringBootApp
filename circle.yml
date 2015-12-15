@@ -1,4 +1,6 @@
 general:
+artifacts:
+    - "~/target"/* # anything in target directory
 machine:
   java:
     version: oraclejdk8
@@ -10,6 +12,9 @@ dependencies:
       - docker build -t vlanderson/sloos-test .
 test:
     override:
-      - mvn verify
-      - mv "../target"/* $CIRCLE_ARTIFACTS
+      - mvn verify   
+deployment:
+    dev:
+    commands:
+        - mv "../target"/* "{$CIRCLE_ARTIFACTS}"
       
