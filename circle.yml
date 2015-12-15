@@ -13,8 +13,5 @@ dependencies:
 test:
     override:
       - mvn verify   
-deployment:
-    dev:
-    commands:
-        - mv "../target"/* "{$CIRCLE_ARTIFACTS}"
+      - mv "../target"/* "{$CIRCLE_ARTIFACTS}"
       
