@@ -1,4 +1,4 @@
 set -x
 set -e
 
-eb init
+mv config.yml ./elasticbeanstalk/config.yml
