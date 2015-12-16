@@ -7,10 +7,10 @@ machine:
   services:
     - docker
 dependencies:
-cache_directories:
-    - "~/docker"
+  cache_directories:
+      - "~/docker"
   pre:
-    - sudo pip install awsebcli
+      - sudo pip install awsebcli
   override:
       - mvn dependency:resolve
       - if [[ -e ~/docker/image.tar ]]; then \ docker load -i ~/docker/image.tar; fi
