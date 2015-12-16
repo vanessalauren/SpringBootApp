@@ -9,9 +9,12 @@ machine:
 dependencies:
   override:
       - mvn dependency:resolve
-      - docker build -t vlanderson/sloos-test .
 test:
     override:
       - mvn verify   
+      - cd "../target"
+      - ls
       - mv "../target"/* "{$CIRCLE_ARTIFACTS}"
+      - cp *".jar" "{$CIRCLE_ARTIFACTS}"
+      - docker build -t vlanderson/sloos-test .
       
