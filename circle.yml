@@ -19,6 +19,10 @@ dependencies:
     - docker info
     - docker build -t vlanderson/timeinc-test .
     - docker push vlanderson/timeinc-test
+test:
+  override:
+    - docker run -d -p 8080:8080 vlanderson/timeinc-test; sleep 10
+    - curl --retry 10 --retry-delay 5 -v http://localhost:8080
 deployment:
   production:
     branch: master
