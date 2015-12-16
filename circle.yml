@@ -12,7 +12,13 @@ dependencies:
   pre:
       - sudo pip install awsebcli
   override:
-      - mvn dependency:resolve
+    - mvn dependency:resolve
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - docker build -t vlanderson/timeinc-test .
+    - mkdir -p ~/docker; docker save vlanderson/timeinc-test > ~/docker/image.tar 
+    - docker info
+    - docker build -t vlanderson/timeinc-test .
+    - docker push vlanderson/timeinc-test
 deployment:
   production:
     branch: master
