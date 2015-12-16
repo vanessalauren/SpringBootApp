@@ -13,6 +13,7 @@ dependencies:
       - sudo pip install awsebcli
   override:
     - mvn dependency:resolve
+    - mv target/Scrayble-1.0.0.jar .
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build -t vlanderson/timeinc-test .
     - mkdir -p ~/docker; docker save vlanderson/timeinc-test > ~/docker/image.tar 
