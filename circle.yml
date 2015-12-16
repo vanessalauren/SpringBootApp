@@ -7,14 +7,14 @@ machine:
   services:
     - docker
 dependencies:
+  pre:
+    - sudo pip install awsebcli
   override:
       - mvn dependency:resolve
-test:
-    override:
-      - mvn verify   
-      - cd "../target"
-      - ls
-      - mv "../target"/* "{$CIRCLE_ARTIFACTS}"
-      - cp *".jar" "{$CIRCLE_ARTIFACTS}"
-      - docker build -t vlanderson/sloos-test .
+deployment:
+  production:
+    branch: master
+    commands:
+      - bash ./setup-eb.sh
+      - eb deploy --profile default
       
