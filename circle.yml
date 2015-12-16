@@ -7,10 +7,15 @@ machine:
   services:
     - docker
 dependencies:
+cache_directories:
+    - "~/docker"
   pre:
     - sudo pip install awsebcli
   override:
       - mvn dependency:resolve
+      - if [[ -e ~/docker/image.tar ]]; then \ docker load -i ~/docker/image.tar; fi
+      - ./build/build-docker.sh
+      - mkdir -p ~/docker; docker save cockroachdb/cockroach-devbase \ > ~/docker/image.tar
 deployment:
   production:
     branch: master
