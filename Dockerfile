@@ -1,5 +1,4 @@
-FROM java:8
-EXPOSE 8080
-EXPOSE 8081
-EXPOSE 8082
-EXPOSE 8083
+FROM bd-ec2:latest
+ADD Scrayble-1.0.0.jar app.jar
+RUN bash -c 'touch /app.jar'
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]

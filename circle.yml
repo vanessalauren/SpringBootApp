@@ -19,12 +19,13 @@ dependencies:
       - docker build -t vlanderson/timeinc-test . #load image from cache if possible
       - mkdir -p ~/docker; docker save vlanderson/timeinc-test > ~/docker/image.tar 
       - docker info
-      - docker build -t vlanderson/bd-ec2 . #build new image
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push vlanderson/bd-ec2 #deploy new image
+      - docker pull vlanderson/bd-ec2
+      - docker build -t vlanderson/bd-sloos . #build new image 
+      - docker push vlanderson/bd-sloos #deploy new image
 test:
   override:
-      - docker run -d -p 8080:8080 vlanderson/bd-ec2; sleep 10 #un container
+      - docker run -d -p 8080:8080 vlanderson/bd-sloos; sleep 10 #un container
       - curl --retry 10 --retry-delay 5 -v http://localhost:8080 #test service
 deployment:
   production:
