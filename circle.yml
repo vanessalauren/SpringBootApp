@@ -15,9 +15,9 @@ dependencies:
       - mvn clean package
       - mv target/Scrayble-1.0.0.jar .
       - cp Scrayble-1.0.0.jar $CIRCLE_ARTIFACTS
-      - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
-      - docker build -t vlanderson/timeinc-test . #load image from cache if possible
-      - mkdir -p ~/docker; docker save vlanderson/timeinc-test > ~/docker/image.tar 
+      #- if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+      #- docker build -t vlanderson/timeinc-test . #load image from cache if possible
+      #- mkdir -p ~/docker; docker save vlanderson/timeinc-test > ~/docker/image.tar 
       - docker info
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker pull vlanderson/bd-ec2
